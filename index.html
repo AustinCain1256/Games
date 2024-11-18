@@ -12,7 +12,12 @@
       const player = ruffle.createPlayer();
       const container = document.getElementById("gameContainer");
       container.appendChild(player);
-      player.load("AngryBirds.swf");
+      player.load("AngryBirdsOnline.swf").catch(error => {
+        console.error("Ruffle failed to load the file:", error);
+        const errorMsg = document.createElement("p");
+        errorMsg.textContent = "Ruffle cannot parse the requested file. Please check the console for more details.";
+        container.appendChild(errorMsg);
+      });
     });
   </script>
   <style>
